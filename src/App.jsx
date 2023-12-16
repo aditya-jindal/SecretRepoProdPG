@@ -1,5 +1,4 @@
 import { useEffect, useReducer } from "react";
-import Header from "./Header";
 import MainEle from "./MainEle";
 import Loader from "./Loader";
 import Error from "./Error";
@@ -12,34 +11,24 @@ import Footer from "./Footer";
 import Timer from "./Timer";
 import data from "../data/questions - Copy.json";
 import { putScore } from "./services/putScore";
-// console.log(data.questions);
 const initialState = {
   questions: [],
-  // allQuestions: [],
-  // numQuestions: 50,
   status: "loading",
   index: 0,
   score: 0,
   userAnswer: null,
-  highScore: JSON.parse(localStorage.getItem("highscore")),
   timeLeft: null,
   name: null,
   email: null,
+  college: null,
 };
 
 const reducer = function (state, action) {
   switch (action.type) {
-    // case "changeNumQuestions":
-    //   return {
-    //     ...state,
-    //     numQuestions: action.payload,
-    //     questions: shuffleArray(state.allQuestions).slice(0, action.payload),
-    //   };
     case "dataRetrieved":
       return {
         ...state,
         questions: setQuestions(action.payload),
-        // allQuestions: action.payload,
         status: "ready",
       };
     case "dataRetrievalFailed":
@@ -50,53 +39,42 @@ const reducer = function (state, action) {
         ...state,
         status: "start",
         timeLeft: 30 * 60,
-        // timeLeft: 4*60,
+        // timeLeft: 4 * 60,
         name: action.payload.name,
         email: action.payload.email,
+        college: action.payload.college,
       };
-    case "next":
-      if (
-        state.index === state.questions?.length - 1 &&
-        state.highScore < state.score
-      ) {
-        console.log(JSON.parse(localStorage.getItem("highscore")));
-        localStorage.setItem("highscore", JSON.stringify(state.score));
-        console.log(JSON.parse(localStorage.getItem("highscore")));
+    case "next": {
+      // new code for reselect
+      let newScore = state.score;
+      if (state.questions[state.index].correctOption === state.userAnswer - 1) {
+        newScore += state.questions[state.index].points;
       }
+      // new code end for reselect
       return state.index === state.questions?.length - 1
         ? {
             ...state,
+            score: newScore,
             status: "end",
-            highScore:
-              state.highScore < state.score ? state.score : state.highScore,
           }
-        : { ...state, index: state.index + 1, userAnswer: null };
+        : {
+            ...state,
+            score: newScore,
+            index: state.index + 1,
+            userAnswer: null,
+          };
+    }
     case "submitAns": {
-      let newScore = state.score;
-      if (state.questions[state.index].correctOption === action.payload) {
-        newScore += state.questions[state.index].points;
-      }
       return {
         ...state,
-        score: newScore,
         userAnswer: action.payload + 1,
       };
     }
-    case "reset":
-      return {
-        ...initialState,
-        questions: shuffleArray(state.allQuestions).slice(0, 50),
-        allQuestions: state.allQuestions,
-        status: "ready",
-        highScore: state.highScore,
-      };
     case "tick":
       if (state.timeLeft <= 0)
         return {
           ...state,
           status: "end",
-          highScore:
-            state.highScore < state.score ? state.score : state.highScore,
         };
 
       return {
@@ -118,37 +96,37 @@ function shuffleArray(array) {
   return shuffledArray;
 }
 function setQuestions(array) {
-  // let updatedQuestions = [
-  //   array[0],
-  //   array[1],
-  //   array[2],
-  //   ...shuffleArray(array.slice(3, 15)).slice(0, 3),
-  //   array[15],
-  //   array[16],
-  //   array[17],
-  //   ...shuffleArray(array.slice(18, 30)).slice(0, 3),
-  //   array[30],
-  //   array[31],
-  //   array[32],
-  //   ...shuffleArray(array.slice(33, 45)).slice(0, 3),
-  //   array[45],
-  //   array[46],
-  //   array[47],
-  //   ...shuffleArray(array.slice(48, 60)).slice(0, 3),
-  //   array[60],
-  //   array[61],
-  //   array[62],
-  //   ...shuffleArray(array.slice(63, 75)).slice(0, 3),
-  // ];
-  // console.log(updatedQuestions);
-  // updatedQuestions = [
-  //   ...shuffleArray(updatedQuestions.slice(0, 6)),
-  //   ...shuffleArray(updatedQuestions.slice(6, 12)),
-  //   ...shuffleArray(updatedQuestions.slice(12, 18)),
-  //   ...shuffleArray(updatedQuestions.slice(18, 24)),
-  //   ...shuffleArray(updatedQuestions.slice(24, 30)),
-  // ];
-  let updatedQuestions = array;
+  let updatedQuestions = [
+    array[0],
+    array[1],
+    array[2],
+    ...shuffleArray(array.slice(3, 15)).slice(0, 3),
+    array[15],
+    array[16],
+    array[17],
+    ...shuffleArray(array.slice(18, 30)).slice(0, 3),
+    array[30],
+    array[31],
+    array[32],
+    ...shuffleArray(array.slice(33, 45)).slice(0, 3),
+    array[45],
+    array[46],
+    array[47],
+    ...shuffleArray(array.slice(48, 60)).slice(0, 3),
+    array[60],
+    array[61],
+    array[62],
+    ...shuffleArray(array.slice(63, 75)).slice(0, 3),
+  ];
+  console.log(updatedQuestions);
+  updatedQuestions = [
+    ...shuffleArray(updatedQuestions.slice(0, 6)),
+    ...shuffleArray(updatedQuestions.slice(6, 12)),
+    ...shuffleArray(updatedQuestions.slice(12, 18)),
+    ...shuffleArray(updatedQuestions.slice(18, 24)),
+    ...shuffleArray(updatedQuestions.slice(24, 30)),
+  ];
+  // let updatedQuestions = array;
   return updatedQuestions;
 }
 
@@ -160,15 +138,24 @@ function App() {
       index,
       score,
       userAnswer,
-      highScore,
       timeLeft,
-      numQuestions,
       name,
       email,
+      college,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
-  // console.log(questions);
+  console.log(score);
+  useEffect(() => {
+    const unloadCallback = (event) => {
+      event.preventDefault();
+      event.returnValue = "";
+      return "";
+    };
+
+    status !== "end" && window.addEventListener("beforeunload", unloadCallback);
+    return () => window.removeEventListener("beforeunload", unloadCallback);
+  }, [status]);
 
   useEffect(function () {
     async function fetchQuestions() {
@@ -184,43 +171,44 @@ function App() {
     }
     fetchQuestions();
   }, []);
-  // const numQuestions = questions?.length;
-  const totalPoints = questions?.reduce(
-    (rec, question) => rec + question.points,
-    0
-  );
+  function formatMMSS(timeLeft) {
+    // different for mock and prod
+    const timeTaken = 30 * 60 - timeLeft;
+    return `${Math.floor(timeTaken / 60)}mins ${timeTaken % 60}secs`;
+  }
   useEffect(
     function () {
       if (status === "end") {
-        putScore({ name: name, email: email, score: score }).then((data) =>
-          console.log(data)
-        );
+        putScore({
+          name: name,
+          email: email,
+          score: score,
+          college: college,
+          // change for prod to 30*60-timeLeft
+          timeTaken: formatMMSS(timeLeft),
+        }).then((data) => console.log(data));
       }
     },
-    [status, email, name, score]
+    [status, email, name, score, college, timeLeft]
   );
   return (
     <div className="app">
-      {/* <Header /> */}
       <MainEle>
         {status === "loading" && <Loader />}
         {status === "error" && <Error />}
-        {status === "ready" && (
-          <StartScreen numQuestions={questions?.length} dispatch={dispatch} />
-        )}
+        {status === "ready" && <StartScreen dispatch={dispatch} />}
         {status === "start" && (
           <>
             <Progress
               numQuestions={questions?.length}
               index={index}
-              score={score}
-              totalPoints={totalPoints}
               userAnswer={userAnswer}
             />
             <Question
               question={questions[index]}
               userAnswer={userAnswer}
               dispatch={dispatch}
+              key={index}
             />
             <Footer>
               <NextButton
@@ -234,14 +222,7 @@ function App() {
           </>
         )}
         {status === "end" && (
-          <ResultScreen
-            score={score}
-            totalPoints={totalPoints}
-            highScore={highScore}
-            dispatch={dispatch}
-            name={name}
-            email={email}
-          />
+          <ResultScreen name={name} email={email} college={college} />
         )}
       </MainEle>
     </div>

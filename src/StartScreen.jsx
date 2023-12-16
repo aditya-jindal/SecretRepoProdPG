@@ -1,16 +1,17 @@
 import { useState } from "react";
 import Header from "./Header";
-function StartScreen({ numQuestions, dispatch }) {
+function StartScreen({ dispatch }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [college, setCollege] = useState("");
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch({ type: "start", payload: { name, email } });
+    dispatch({ type: "start", payload: { name, email, college } });
   }
   return (
     <div className="start">
       <Header />
-      <h2>Mathematical Talent Exam</h2>
+      <h2>Mathematical Talent Exam (MOCK)</h2>
       <form onSubmit={(e) => handleSubmit(e)} className="beginform">
         <div className="forminput">
           <h4>Name:</h4>
@@ -34,6 +35,17 @@ function StartScreen({ numQuestions, dispatch }) {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
+        <div className="forminput">
+          <h4>College:</h4>
+          <input
+            className="btn"
+            type="text"
+            placeholder="college name"
+            required
+            value={college}
+            onChange={(e) => setCollege(e.target.value)}
+          />
+        </div>
         <h3 className="instructions-heading">Instructions:</h3>
         <ul>
           <li>
@@ -43,21 +55,14 @@ function StartScreen({ numQuestions, dispatch }) {
             </h5>
           </li>
           <li>
-            <h5>You will have 30 mins to attempt the entire quiz.</h5>
+            <h5>Pattern: Multiple Choice Questions (MCQs).</h5>
           </li>
           <li>
-            <h5>There will be 5 sections, with 6 question each.</h5>
-          </li>
-          <li>
-            <h5>
-              Every correctly answered question awards 1 point. There is no
-              negative marking.
-            </h5>
+            <h5>No. of questions: 5, Duration: 4 minutes.</h5>
           </li>
           <li>
             <h5>
-              Navigation between questions is disabled. Answer the questions as
-              you come across them.
+              Each question’s weightage is 1 mark. There is no negative marking.
             </h5>
           </li>
           <li>
@@ -66,12 +71,20 @@ function StartScreen({ numQuestions, dispatch }) {
               will submit automatically.
             </h5>
           </li>
+          <li>
+            <h5>
+              Do not refresh/reload the page. All attempted data will be lost
+              upon doing so.
+            </h5>
+          </li>
+          <li>
+            <h5>
+              Either laptops or mobile devices can be used for the test, but we
+              recommend laptops for an optimal experience.
+            </h5>
+          </li>
         </ul>
-        <button
-          type="submit"
-          className="btn  "
-          // onClick={() => dispatch({ type: "start" })}
-        >
+        <button type="submit" className="btn">
           Let's Start
         </button>
       </form>
