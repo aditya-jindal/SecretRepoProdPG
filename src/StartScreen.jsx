@@ -11,9 +11,9 @@ function StartScreen({ dispatch }) {
   return (
     <div className="start">
       <Header />
-      <h2>Mathematical Talent Exam (MOCK)</h2>
+      <h2>Mathematical Talent Exam</h2>
       <form onSubmit={(e) => handleSubmit(e)} className="beginform">
-        <div className="forminput">
+        <div className="forminput name">
           <h4>Name:</h4>
           <input
             className="btn"
@@ -24,7 +24,7 @@ function StartScreen({ dispatch }) {
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div className="forminput">
+        <div className="forminput email">
           <h4>Email:</h4>
           <input
             className="btn"
@@ -36,11 +36,11 @@ function StartScreen({ dispatch }) {
           />
         </div>
         <div className="forminput">
-          <h4>College:</h4>
+          <h4>College, Place:</h4>
           <input
             className="btn"
             type="text"
-            placeholder="college name"
+            placeholder="eg. VIT, Vellore"
             required
             value={college}
             onChange={(e) => setCollege(e.target.value)}
@@ -58,7 +58,7 @@ function StartScreen({ dispatch }) {
             <h5>Pattern: Multiple Choice Questions (MCQs).</h5>
           </li>
           <li>
-            <h5>No. of questions: 5, Duration: 4 minutes.</h5>
+            <h5>No. of questions: 30, Duration: 30 minutes.</h5>
           </li>
           <li>
             <h5>

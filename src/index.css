@@ -56,6 +56,10 @@ body {
   .app-header {
     width: 90vw;
   }
+  .forminput{
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .error {
@@ -315,6 +319,7 @@ progress {
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
+  /* justify-content: space-around; */
 }
 
 .instructions-heading {
@@ -335,4 +340,11 @@ h5{
 .resultForm h4{
   text-align: center;
   margin-bottom: 1rem;
+}
+
+.name{
+  margin-right: -7rem;
+}
+.email{
+  margin-right: -7rem;
 }
