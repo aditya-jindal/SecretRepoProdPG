@@ -5,7 +5,7 @@ function ResultScreen({ name, email, college }) {
       <div className="resultForm">
         <h4>Name: {name}</h4>
         <h4>Email: {email}</h4>
-        <h4>College: {college}</h4>
+        <h4>Reg No: {college}</h4>
       </div>
       <h3>You can exit the website now</h3>
     </div>

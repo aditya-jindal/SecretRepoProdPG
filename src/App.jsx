@@ -119,7 +119,7 @@ function setQuestions(array) {
     array[62],
     ...shuffleArray(array.slice(63, 75)).slice(0, 3),
   ];
-  console.log(updatedQuestions);
+  // console.log(updatedQuestions);
   updatedQuestions = [
     ...shuffleArray(updatedQuestions.slice(0, 5)),
     ...shuffleArray(updatedQuestions.slice(5, 10)),
