@@ -97,18 +97,19 @@ function shuffleArray(array) {
 }
 function setQuestions(array) {
   let updatedQuestions = [
-    array[0],
-    array[1],
-    array[2],
-    ...shuffleArray(array.slice(3, 15)).slice(0, 3),
+    // array[0],
+    // array[1],
+    // array[2],
+    // ...shuffleArray(array.slice(3, 15)).slice(0, 3),
+    ...shuffleArray(array.slice(75, 85)).slice(0, 5),
     array[15],
     array[16],
     array[17],
     ...shuffleArray(array.slice(18, 30)).slice(0, 3),
     array[30],
     array[31],
-    array[32],
-    ...shuffleArray(array.slice(33, 45)).slice(0, 3),
+    // array[32],
+    // ...shuffleArray(array.slice(33, 45)).slice(0, 3),
     array[45],
     array[46],
     array[47],
@@ -118,13 +119,13 @@ function setQuestions(array) {
     array[62],
     ...shuffleArray(array.slice(63, 75)).slice(0, 3),
   ];
-  console.log(updatedQuestions);
+  // console.log(updatedQuestions);
   updatedQuestions = [
-    ...shuffleArray(updatedQuestions.slice(0, 6)),
-    ...shuffleArray(updatedQuestions.slice(6, 12)),
-    ...shuffleArray(updatedQuestions.slice(12, 18)),
-    ...shuffleArray(updatedQuestions.slice(18, 24)),
-    ...shuffleArray(updatedQuestions.slice(24, 30)),
+    ...shuffleArray(updatedQuestions.slice(0, 5)),
+    ...shuffleArray(updatedQuestions.slice(5, 10)),
+    ...shuffleArray(updatedQuestions.slice(10, 15)),
+    ...shuffleArray(updatedQuestions.slice(15, 20)),
+    ...shuffleArray(updatedQuestions.slice(20, 25)),
   ];
   // let updatedQuestions = array;
   return updatedQuestions;

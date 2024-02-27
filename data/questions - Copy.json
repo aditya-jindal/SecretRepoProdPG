@@ -455,6 +455,66 @@
       "options": ["A", "B", "C", "D"],
       "correctOption": 1,
       "points": 1
+    },
+    {
+      "question": "https://i.postimg.cc/BQG9ML3z/1.png",
+      "options": ["A", "B", "C", "D"],
+      "correctOption": 1,
+      "points": 1
+    },
+    {
+      "question": "https://i.postimg.cc/SKtbrgQL/2.png",
+      "options": ["A", "B", "C", "D"],
+      "correctOption": 2,
+      "points": 1
+    },
+    {
+      "question": "https://i.postimg.cc/s22R7kzD/3.png",
+      "options": ["A", "B", "C", "D"],
+      "correctOption": 3,
+      "points": 1
+    },
+    {
+      "question": "https://i.postimg.cc/L4PFtkcf/5.png",
+      "options": ["A", "B", "C", "D"],
+      "correctOption": 2,
+      "points": 1
+    },
+    {
+      "question": "https://i.postimg.cc/xCwDrqzc/6.png",
+      "options": ["A", "B", "C", "D"],
+      "correctOption": 1,
+      "points": 1
+    },
+    {
+      "question": "https://i.postimg.cc/90y3cVd1/7.png",
+      "options": ["A", "B", "C", "D"],
+      "correctOption": 2,
+      "points": 1
+    },
+    {
+      "question": "https://i.postimg.cc/26bRXn3s/8.png",
+      "options": ["A", "B", "C", "D"],
+      "correctOption": 2,
+      "points": 1
+    },
+    {
+      "question": "https://i.postimg.cc/dV6Y7qzx/10.png",
+      "options": ["A", "B", "C", "D"],
+      "correctOption": 0,
+      "points": 1
+    },
+    {
+      "question": "https://i.postimg.cc/RVQr8SVZ/11.png",
+      "options": ["A", "B", "C", "D"],
+      "correctOption": 0,
+      "points": 1
+    },
+    {
+      "question": "https://i.postimg.cc/pLWNMwpY/12.png",
+      "options": ["A", "B", "C", "D"],
+      "correctOption": 3,
+      "points": 1
     }
   ]
 }

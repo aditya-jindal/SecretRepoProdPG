@@ -24,6 +24,17 @@ function StartScreen({ dispatch }) {
             onChange={(e) => setName(e.target.value)}
           />
         </div>
+        <div className="forminput college">
+          <h4>Reg No:</h4>
+          <input
+            className="btn"
+            type="text"
+            placeholder="eg. 22BCE3449"
+            required
+            value={college}
+            onChange={(e) => setCollege(e.target.value)}
+          />
+        </div>
         <div className="forminput email">
           <h4>Email:</h4>
           <input
@@ -33,17 +44,6 @@ function StartScreen({ dispatch }) {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="forminput">
-          <h4>College, Place:</h4>
-          <input
-            className="btn"
-            type="text"
-            placeholder="eg. VIT, Vellore"
-            required
-            value={college}
-            onChange={(e) => setCollege(e.target.value)}
           />
         </div>
         <h3 className="instructions-heading">Instructions:</h3>
@@ -58,7 +58,7 @@ function StartScreen({ dispatch }) {
             <h5>Pattern: Multiple Choice Questions (MCQs).</h5>
           </li>
           <li>
-            <h5>No. of questions: 30, Duration: 30 minutes.</h5>
+            <h5>No. of questions: 25, Duration: 30 minutes.</h5>
           </li>
           <li>
             <h5>
@@ -75,12 +75,6 @@ function StartScreen({ dispatch }) {
             <h5>
               Do not refresh/reload the page. All attempted data will be lost
               upon doing so.
-            </h5>
-          </li>
-          <li>
-            <h5>
-              Either laptops or mobile devices can be used for the test, but we
-              recommend laptops for an optimal experience.
             </h5>
           </li>
         </ul>
