@@ -39,7 +39,7 @@ const reducer = function (state, action) {
         ...state,
         status: "start",
         timeLeft: 30 * 60,
-        // timeLeft: 4 * 60,
+        // timeLeft: 4 * 60 ,
         name: action.payload.name,
         email: action.payload.email,
         college: action.payload.college,
